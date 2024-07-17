@@ -3,46 +3,38 @@ package Find_if_an_expression_has_duplicate_parenthesis_or_not;
 import java.util.Stack;
 
 public class GFG {
-	static boolean findDuplicateparenthesis(String s) {
-		Stack<Character> Stack = new Stack<>();
+    static boolean findDuplicateParenthesis(String s) {
+        Stack<Character> stack = new Stack<>();
 
-		char[] str = s.toCharArray();
-		for (char ch : str) {
-			if (ch == ')') {
-				char top = Stack.peek();
-				Stack.pop();
+        char[] str = s.toCharArray();
+        for (char ch : str) {
+            if (ch == ')') {
+                int elementsInside = 0;
+                while (stack.peek() != '(') {
+                    stack.pop();
+                    elementsInside++;
+                }
+                stack.pop(); // pop the opening parenthesis '('
 
-				// stores the number of characters between a closing and opening parenthesis 
-				// if this count is less than or equal to 1 then the brackets are redundant else not 
-				int elementsInside = 0;
-				while (top != '(') {
-					elementsInside++;
-				}
-				if (elementsInside < 1) {
-					return true;
-				}
-			} // push open parenthesis '(', operators and 
-			// operands to stack 
-			else {
-				Stack.push(ch);
-			}
-		}
+                if (elementsInside < 1) {
+                    return true; // found duplicate parenthesis
+                }
+            } else {
+                stack.push(ch);
+            }
+        }
 
-		// No duplicates found 
-		return false;
-	}
+        // No duplicates found
+        return false;
+    }
 
-// Driver code 
-public static void main(String[] args) {
+    public static void main(String[] args) {
+        String str = "(((a+(b))+(c+d)))";
 
-		// input balanced expression 
-		String str = "(((a+(b))+(c+d)))";
-
-		if (findDuplicateparenthesis(str)) {
-			System.out.println("Duplicate Found ");
-		} else {
-			System.out.println("No Duplicates Found ");
-		}
-
-	}
+        if (findDuplicateParenthesis(str)) {
+            System.out.println("Duplicate Found");
+        } else {
+            System.out.println("No Duplicates Found");
+        }
+    }
 }
