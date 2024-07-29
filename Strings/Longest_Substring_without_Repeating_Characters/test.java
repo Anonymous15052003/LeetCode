@@ -1,5 +1,4 @@
 import java.util.HashMap;
-
 public class test {
     public static int solve(String s){
         HashMap<Character,Integer> mpp = new HashMap<>();
