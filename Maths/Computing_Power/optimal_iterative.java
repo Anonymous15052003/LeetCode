@@ -1,5 +1,7 @@
 package Computing_Power;
 
+// Binary Exponentiation
+
 public class optimal_iterative {
     public static int power(int a,int n){
         int temp = 1;
